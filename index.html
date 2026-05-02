@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Paper-Scizors</title>
+</head>
+<body>
+    <script>
+        function gethumanchoice(){
+            let humanChoice = prompt("Please enter Rock,Paper,or Scizors.");
+            return humanChoice.toLowerCase();
+            
+        }
+
+        function getcomputerchoice(){
+            let computerChoice = "";
+            let randoNumber = Math.floor(Math.random() * 3) + 1;
+            if(randoNumber == 1){
+                computerChoice = "rock";
+            } else if(randoNumber == 2){
+                computerChoice = "scizors";
+            }else{
+                computerChoice = "paper";
+            }
+            return computerChoice;
+        }
+
+        function playRound(humanChoice, computerChoice){
+        
+              if(humanChoice == computerChoice){
+                  console.log("Its a Draw");
+                  return "draw";
+              }else if(humanChoice == "rock" && computerChoice == "paper"){
+                  console.log("You lose! Paper beats rock.");
+                  return "computer";
+               }else if(humanChoice == "rock" && computerChoice == "scizors"){
+                  console.log("You Win! Rock beats scizors.");
+                    return "human";
+               }else if(humanChoice == "paper" && computerChoice == "scizors"){
+                   console.log("You lose! Scizors beats paper.");
+                   return "computer";
+               }else if(humanChoice == "paper" && computerChoice == "rock"){
+                   console.log("You Win! Paper beats Rock.");
+                   return "human";
+              }else if(humanChoice == "scizors" && computerChoice == "rock"){
+                    console.log("You lose! Rock beats Scizors.");
+                    return "computer";
+                }else if(humanChoice == "scizors" && computerChoice == "paper"){
+                    console.log("You Win! Scizors beats paper.");
+                    return "human";
+              }
+        
+        }
+
+        function playGame(){
+            let humanScore = 0;
+            let computerScore = 0;
+            for(let i = 0; i <= 5; i++){
+                let humanChoice = gethumanchoice();
+                let computerChoice = getcomputerchoice();
+                let result = playRound(humanChoice, computerChoice);
+
+                if(result == "human"){
+                    humanScore++;
+                }else if(result == "computer"){
+                    computerScore++;
+                }
+            }
+            console.log("Your Score: " + humanScore);
+            console.log("Computer Score: " + computerScore);
+            if(humanScore == computerScore){
+                console.log("Its a Draw!");
+            }else if(humanScore < computerScore){
+                console.log("You Lose!");
+            }else if(humanScore > computerScore){
+                console.log("You Win!");
+            }
+        
+        }
+
+        playGame();
+
+       
+    </script>
+</body>
+</html>
